@@ -11,9 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import g2report.domain.ProductQuickSell;
 import g2report.domain.QuickSell;
 import g2report.domain.dto.ClientDto;
+import g2report.domain.dto.ProductQuickSellDto;
 import g2report.domain.dto.QuickSellDto;
+import g2report.domain.dto.product.ProductDto;
+import g2report.domain.dto.product.ProductFamilyDto;
+import g2report.domain.dto.product.ProductGroupDto;
+import g2report.domain.dto.product.ProductOthersDto;
+import g2report.domain.product.Product;
 import g2report.service.QuickSellService;
 
 @Controller
@@ -34,6 +41,36 @@ public class QuickSellController {
 				ClientDto clientDto = new ClientDto();
 				BeanUtils.copyProperties(quickSell.getClient(), clientDto);
 				quickSellDto.setClient(clientDto);
+			}
+			if (quickSell.getListProductQuickSell() != null) {
+				List<ProductQuickSellDto> listProdQuickSellDto = new ArrayList<ProductQuickSellDto>();
+				for (ProductQuickSell prodQuickSell : quickSell.getListProductQuickSell()) {
+					ProductQuickSellDto prodQuickSellDto = new ProductQuickSellDto();
+					Product product = prodQuickSell.getProduct();
+					if (product != null) {
+						ProductDto productDto = new ProductDto();
+						BeanUtils.copyProperties(prodQuickSell.getProduct(), productDto);
+						if (product.getProductFamily() != null) {
+							ProductFamilyDto prodFamilyDto = new ProductFamilyDto();
+							BeanUtils.copyProperties(product.getProductFamily(), prodFamilyDto);
+							productDto.setProductFamily(prodFamilyDto);
+						}
+						if (product.getProductGroup() != null) {
+							ProductGroupDto prodGroupDto = new ProductGroupDto();
+							BeanUtils.copyProperties(product.getProductGroup(), prodGroupDto);
+							productDto.setProductGroup(prodGroupDto);
+						}
+						if (product.getProductOther() != null) {
+							ProductOthersDto prodOthersDto = new ProductOthersDto();
+							BeanUtils.copyProperties(product.getProductOther(), prodOthersDto);
+							productDto.setProductOther(prodOthersDto);
+						}
+						prodQuickSellDto.setProduct(productDto);
+					}
+					BeanUtils.copyProperties(prodQuickSell, prodQuickSellDto);
+					listProdQuickSellDto.add(prodQuickSellDto);
+				}
+				quickSellDto.setListProductQuickSell(listProdQuickSellDto);
 			}
 			listQuickSellDto.add(quickSellDto);
 		}

@@ -2,7 +2,7 @@ package g2report.service;
 
 import java.util.List;
 
-import g2report.domain.Product;
+import g2report.domain.product.Product;
 
 public interface ProductService {
 

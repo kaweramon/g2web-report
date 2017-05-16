@@ -1,6 +1,7 @@
 package g2report.domain.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -20,4 +21,6 @@ public class QuickSellDto {
 	private Double additionValue;
 	private Double discountValue;
 	private String nfeKey;
+	private String numNote;
+	private List<ProductQuickSellDto> listProductQuickSell;
 }

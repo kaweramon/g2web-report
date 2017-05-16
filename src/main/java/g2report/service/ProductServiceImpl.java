@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import g2report.domain.Product;
+import g2report.domain.product.Product;
 import g2report.repository.ProductRepository;
 
 @Service

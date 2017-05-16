@@ -3,9 +3,9 @@ package g2report.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import g2report.domain.product.Product;
+import g2report.domain.product.ProductGroup;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Integer>{
+public interface ProductGroupRepository extends CrudRepository<ProductGroup, Integer> {
 
 }
