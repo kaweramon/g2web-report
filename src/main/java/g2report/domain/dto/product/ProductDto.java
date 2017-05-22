@@ -9,6 +9,7 @@ public class ProductDto {
 	private String name;
 	private String barCode;
 	private String type;
+	private Double costPrice;
 	private ProductGroupDto productGroup;
 	private ProductFamilyDto productFamily;
 	private ProductOthersDto productOther;

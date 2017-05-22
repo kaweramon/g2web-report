@@ -29,6 +29,9 @@ public class Product {
 	@Column(name = "Tipo")
 	private String type;
 	
+	@Column(name = "preco_custo")
+	private Double costPrice;
+	
 	@ManyToOne
 	@JoinColumn(name = "Cod_Grupo")
 	private ProductGroup productGroup;

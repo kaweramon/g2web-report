@@ -1,4 +1,4 @@
-package g2report.service.quicksell.search;
+package g2report.service.search;
 
 import lombok.Data;
 

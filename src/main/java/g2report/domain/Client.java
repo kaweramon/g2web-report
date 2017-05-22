@@ -20,6 +20,42 @@ public class Client {
 	@Column(name = "Nome")
 	private String name;
 	
+	@Column(name = "CPF")
+	private String cpf;
+	
+	@Column(name = "RG")
+	private String rg;
+	
+	@Column(name = "CNPJ")
+	private String cnpj;
+	
+	@Column(name = "Telefone")
+	private String cel1;
+	
+	@Column(name = "Telefone2")
+	private String cel2;
+	
+	@Column(name = "Endereco")
+	private String address;
+	
+	@Column(name = "Num")
+	private Integer addressNumber;
+	
+	@Column(name = "complemento")
+	private String complement;
+	
+	@Column(name = "Bairro")
+	private String neighborhood;
+
+	@Column(name = "Cidade")
+	private String city;
+	
+	@Column(name = "UF")
+	private String uf;
+	
+	@Column(name = "CEP")
+	private String zipCode;
+	
 	public Client() {}
 	
 	public Client(Integer id) {

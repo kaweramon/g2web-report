@@ -21,6 +21,6 @@ public class QuickSellDto {
 	private Double additionValue;
 	private Double discountValue;
 	private String nfeKey;
-	private String numNote;
+	private String coo;
 	private List<ProductQuickSellDto> listProductQuickSell;
 }

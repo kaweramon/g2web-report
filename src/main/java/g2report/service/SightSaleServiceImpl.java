@@ -1,6 +1,5 @@
 package g2report.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,27 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import g2report.domain.QuickSell;
-import g2report.repository.QuickSellRepository;
-import g2report.service.search.quicksell.QuickSellSpecificationBuilder;
+import g2report.domain.SightSale;
+import g2report.repository.SightSaleRepository;
+import g2report.service.search.sightsale.SightSaleSpecificationBuilder;
 
 @Service
-public class QuickSellServiceImpl implements QuickSellService {
+public class SightSaleServiceImpl implements SightSaleService {
 
 	@Autowired
-	private QuickSellRepository repository;
+	private SightSaleRepository repository;
 	
-	public List<QuickSell> listQuickSellReport(Date dateFrom, Date dateTo) {		
-		return (List<QuickSell>) repository.findAllAndClient(dateFrom, dateFrom);
-	}
-
-	public List<QuickSell> search(String search) {
-		Specification<QuickSell> spec = processSpecification(search);
+	public List<SightSale> searchSale(String search) {
+		Specification<SightSale> spec = processSpecification(search);
 		return repository.findAll(spec);
 	}
 
-	private Specification<QuickSell> processSpecification(String search) {
-		QuickSellSpecificationBuilder builder = new QuickSellSpecificationBuilder();
+	private Specification<SightSale> processSpecification(String search) {
+		SightSaleSpecificationBuilder builder = new SightSaleSpecificationBuilder();
 
 		String[] searchQuery = search.split(",");
 		
@@ -45,4 +40,5 @@ public class QuickSellServiceImpl implements QuickSellService {
 		
 		return builder.build();
 	}
+	
 }

@@ -68,7 +68,7 @@ public class QuickSell {
 	private String nfeKey;
 	
 	@Column(name = "COO")
-	private String numNote;
+	private String coo;
 	
 	@OneToMany(mappedBy = "quickSell")
 	private List<ProductQuickSell> listProductQuickSell;

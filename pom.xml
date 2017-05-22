@@ -5,7 +5,7 @@
   <groupId>g2report</groupId>
   <artifactId>g2report</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <!-- <packaging>jar</packaging> -->
 
   <name>g2report</name>
   <url>http://maven.apache.org</url>
@@ -58,4 +58,31 @@
 		<scope>provided</scope>
 	</dependency>
   </dependencies>
+  
+  <build>
+  	<plugins>
+	  	<plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <executable>true</executable>
+            </configuration>
+        </plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-jar-plugin</artifactId>
+        	<version>3.0.2</version>
+        	<configuration>
+			  <archive>
+			    <manifest>
+				<addClasspath>true</addClasspath>
+				<mainClass>g2report.App</mainClass>
+				<classpathPrefix>dependency-jars/</classpathPrefix>
+			    </manifest>
+			  </archive>
+			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  
 </project>
