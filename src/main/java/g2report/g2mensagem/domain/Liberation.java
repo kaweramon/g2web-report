@@ -1,12 +1,16 @@
 package g2report.g2mensagem.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -23,9 +27,13 @@ public class Liberation {
 	private String clientSystemVersion;
 	
 	@Column(name = "Liberacao_sistema")
+//	@Temporal(TemporalType.DATE)
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/Recife")
 	private Date systemLiberationDate;
 	
 	@Column(name = "data_verificacao")
+//	@Temporal(TemporalType.TIMESTAMP)
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/Recife")
 	private Date verificationDate;
 	
 	@Column(name = "Obs")

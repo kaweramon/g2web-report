@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import g2report.bancr.repository.ClientRepository;
 import g2report.g2mensagem.domain.Liberation;
 import g2report.g2mensagem.repository.LiberationRepository;
 import g2report.g2mensagem.service.search.ClientLiberationSpecificationBuilder;
@@ -18,9 +17,6 @@ public class LiberationServiceImpl implements LiberationService {
 
 	@Autowired
 	private LiberationRepository repository;
-	
-	@Autowired
-	private ClientRepository clientRepository;
 	
 	public List<Liberation> listReport() {
 		List<Liberation> listLiberation = (List<Liberation>) repository.findAll();
@@ -48,6 +44,18 @@ public class LiberationServiceImpl implements LiberationService {
 		}
 		
 		return builder.build();
+	}
+
+	public Liberation update(Integer liberationId, Liberation liberation) {
+		
+		Liberation liberationDB = repository.findOne(liberationId);
+		
+		liberationDB.setClientSystemVersion(liberation.getClientSystemVersion());
+		liberationDB.setObs(liberation.getObs());
+		liberationDB.setSystemLiberationDate(liberation.getSystemLiberationDate());
+		liberationDB.setVerificationDate(liberation.getVerificationDate());
+		
+		return repository.save(liberationDB);
 	}
 	
 }

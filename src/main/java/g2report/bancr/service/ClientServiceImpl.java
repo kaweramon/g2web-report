@@ -1,5 +1,6 @@
 package g2report.bancr.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import g2report.bancr.domain.Client;
 import g2report.bancr.repository.ClientRepository;
 import g2report.bancr.service.search.client.ClientSpecificationBuilder;
+import g2report.g2mensagem.domain.Liberation;
 import g2report.g2mensagem.repository.LiberationRepository;
 
 @Service
@@ -28,12 +30,15 @@ public class ClientServiceImpl implements ClientService {
 
 	public List<Client> search(String search) {
 		Specification<Client> spec = processSpecification(search);
-		List<Client> clients = repository.findAll(spec);
-		
-		for (Client client: clients) {
-			client.setLiberation(liberationRepository.findOneByClientId(client.getId()));
-		}
-		
+		List<Client> tempClients = repository.findAll(spec);
+		List<Client> clients = new ArrayList<Client>();
+		for (Client tempClient: tempClients) {
+			Liberation liberation = liberationRepository.findOneByClientId(tempClient.getId());
+			if (liberation != null) {
+				tempClient.setLiberation(liberation);
+				clients.add(tempClient);
+			}
+		}		
 		return clients;
 	}
 

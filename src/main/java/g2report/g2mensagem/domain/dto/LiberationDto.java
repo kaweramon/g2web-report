@@ -1,7 +1,7 @@
 package g2report.g2mensagem.domain.dto;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;

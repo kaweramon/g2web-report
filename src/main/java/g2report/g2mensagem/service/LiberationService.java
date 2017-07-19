@@ -9,4 +9,6 @@ public interface LiberationService {
 	public List<Liberation> listReport();
 
 	public List<Liberation> search(String search);
+	
+	public Liberation update(Integer liberationId, Liberation liberation);
 }
