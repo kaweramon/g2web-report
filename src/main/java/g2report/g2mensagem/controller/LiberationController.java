@@ -34,4 +34,9 @@ public class LiberationController {
 	public @ResponseBody LiberationDto update(@RequestParam("liberationId") Integer liberationId, @RequestBody LiberationDto liberation) {
 		return LiberationDto.fromObject(service.update(liberationId, liberation.toObject()));
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/versions")
+	public @ResponseBody List<String> getVersions() {
+		return service.getVersions();
+	}
 }

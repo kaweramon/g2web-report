@@ -1,5 +1,6 @@
 package g2report.g2mensagem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import g2report.g2mensagem.domain.Liberation;
 import g2report.g2mensagem.repository.LiberationRepository;
-import g2report.g2mensagem.service.search.ClientLiberationSpecificationBuilder;
+import g2report.g2mensagem.service.search.LiberationSpecificationBuilder;
 
 @Service
 public class LiberationServiceImpl implements LiberationService {
@@ -29,7 +30,7 @@ public class LiberationServiceImpl implements LiberationService {
 	}
 	
 	private Specification<Liberation> processSpecification(String search) {
-		ClientLiberationSpecificationBuilder builder = new ClientLiberationSpecificationBuilder();
+		LiberationSpecificationBuilder builder = new LiberationSpecificationBuilder();
 		
 		String[] searchQuery = search.split(",");
 		
@@ -56,6 +57,17 @@ public class LiberationServiceImpl implements LiberationService {
 		liberationDB.setVerificationDate(liberation.getVerificationDate());
 		
 		return repository.save(liberationDB);
+	}
+
+	public List<String> getVersions() {
+		List<Liberation> liberations = repository.getVersions();
+		List<String> liberationsStr = new ArrayList<String>();
+		for (Liberation liberation: liberations) {
+			if (liberationsStr.indexOf(liberation.getClientSystemVersion()) == -1) {
+				liberationsStr.add(liberation.getClientSystemVersion());
+			}
+		}
+		return liberationsStr;
 	}
 	
 }

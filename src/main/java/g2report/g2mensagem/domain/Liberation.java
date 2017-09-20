@@ -7,11 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+import g2report.bancr.domain.Client;
 import lombok.Data;
 
 @Entity(name = "liberacao")
@@ -42,4 +41,7 @@ public class Liberation {
 	@Column(name = "ID_Cliente")
 	private Integer clientId;
 	
+/*	@OneToOne(targetEntity = Client.class)
+	@JoinColumn(name = "ID_Cliente")
+	private Client client;*/
 }

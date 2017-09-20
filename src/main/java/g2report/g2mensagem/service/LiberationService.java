@@ -11,4 +11,6 @@ public interface LiberationService {
 	public List<Liberation> search(String search);
 	
 	public Liberation update(Integer liberationId, Liberation liberation);
+	
+	public List<String> getVersions();
 }

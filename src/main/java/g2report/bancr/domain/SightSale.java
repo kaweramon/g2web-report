@@ -55,6 +55,9 @@ public class SightSale {
 	@Column(name = "Status")
 	private String status;
 	
+	@Column(name = "Chave_NFE")
+	private String nfeKey;
+	
 	@OneToMany(mappedBy = "sightSale")
 	private List<ProductSightSale> listProductSightSale;
 }

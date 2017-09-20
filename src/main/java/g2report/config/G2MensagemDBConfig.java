@@ -36,6 +36,7 @@ public class G2MensagemDBConfig {
 	public LocalContainerEntityManagerFactoryBean barEntityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("g2MensagemDataSource") DataSource dataSource) {
 		return builder.dataSource(dataSource).packages("g2report.g2mensagem.domain").persistenceUnit("g2mensagem").build();
+//		return builder.dataSource(dataSource).packages("g2report.g2mensagem.domain", "g2report.bancr.domain").build();
 	}
 
 	@Bean(name = "g2MensagemTransactionManager")
