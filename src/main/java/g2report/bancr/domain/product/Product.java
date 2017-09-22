@@ -23,6 +23,9 @@ public class Product {
 	@Column(name = "Discriminacao")
 	private String name;
 	
+	@Column(name = "Referencia")
+	private String reference;
+	
 	@Column(name = "Codigo_Produto")
 	private String barCode;
 	
@@ -31,6 +34,12 @@ public class Product {
 	
 	@Column(name = "preco_custo")
 	private Double costPrice;
+	
+	@Column(name = "Valor")
+	private Double priceValue;
+	
+	@Column(name = "Unidade")
+	private String unity;
 	
 	@ManyToOne
 	@JoinColumn(name = "Cod_Grupo")

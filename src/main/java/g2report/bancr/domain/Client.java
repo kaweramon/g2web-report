@@ -67,6 +67,9 @@ public class Client {
 	@Column(name = "Situacao")
 	private String situation;
 	
+	@Column(name = "Insc_Estadual")
+	private String stateRegistration;
+	
 	@Transient
 	private Liberation liberation;
 	

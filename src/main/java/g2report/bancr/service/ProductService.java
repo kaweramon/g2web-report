@@ -7,4 +7,6 @@ import g2report.bancr.domain.product.Product;
 public interface ProductService {
 
 	public List<Product> list();
+	
+	public List<Product> search(String query);
 }

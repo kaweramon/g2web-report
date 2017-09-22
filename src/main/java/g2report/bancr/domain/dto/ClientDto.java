@@ -29,6 +29,7 @@ public class ClientDto {
 	private String city;
 	private String uf;
 	private String zipCode;
+	private String stateRegistration;
 	private LiberationDto liberation;
 	
 	public static ClientDto fromObject(Client client) {

@@ -4,9 +4,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import g2report.bancr.domain.product.Product;
+import g2report.bancr.domain.Budget;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Integer>, JpaSpecificationExecutor<Product>{
-
+public interface BudgetRepository extends CrudRepository<Budget, Integer>, JpaSpecificationExecutor<Budget> {
+	
+	public Budget findFirstByOrderByIdDesc();
+	
 }

@@ -32,4 +32,12 @@ public class ProductOthers {
 	@Column(name = "valor_Desconto")
 	private Double discountValue;
 	
+	@Column(name = "CFOP")
+	private Integer cfop;
+	
+	@Column(name = "NCM")
+	private String ncm;
+	
+	@Column(name = "CST_Num")
+	private String cstNumber;
 }

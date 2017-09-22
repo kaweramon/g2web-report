@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import g2report.bancr.domain.dto.product.ProductDto;
@@ -18,7 +19,7 @@ import g2report.bancr.domain.product.Product;
 import g2report.bancr.service.ProductService;
 
 @Controller
-@RequestMapping(value = "product")
+@RequestMapping(path = "/product")
 public class ProductController {
 
 	@Autowired
@@ -50,5 +51,10 @@ public class ProductController {
 		}
 		
 		return listProductDto;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/search")
+	public @ResponseBody List<ProductDto> search(@RequestParam("query") String query) {
+		return ProductDto.fromObject(service.search(query));
 	}
 }
