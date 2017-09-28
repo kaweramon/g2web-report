@@ -9,9 +9,13 @@ public interface BudgetService {
 
 	public Budget getById(Integer budgetId) throws EventException;
 	
-	public List<Budget> search(String query);
+	public List<Budget> search(String query) throws EventException;
 	
-	public void create(Budget budget);
+	public Budget create(Budget budget);
+	
+	public void update(Budget budget, Integer budgetId) throws EventException; 
 	
 	public Budget getLast();
+	
+	public void deleteBudget(Integer budgetId) throws EventException;
 }

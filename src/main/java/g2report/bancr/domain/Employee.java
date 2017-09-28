@@ -22,4 +22,10 @@ public class Employee {
 	
 	@Column(name = "Senha")
 	private String password;
+	
+	@Column(name = "Situacao")
+	private String situation;
+	
+	@Column(name = "Profissao")
+	private String profession;
 }

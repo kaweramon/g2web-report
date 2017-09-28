@@ -29,19 +29,30 @@ public class BudgetController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
-	public void create(@RequestBody BudgetDto budgetDto) {
-		service.create(budgetDto.toObject());
+	public @ResponseBody BudgetDto create(@RequestBody BudgetDto budgetDto) {
+		return  BudgetDto.fromObject(service.create(budgetDto.toObject()));
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/search")
-	public @ResponseBody List<BudgetDto> search(@RequestParam("query") String query) {
+	public @ResponseBody List<BudgetDto> search(@RequestParam("query") String query) throws EventException {
 		return BudgetDto.fromObject(service.search(query));
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT)
+	public @ResponseBody void update(@RequestBody BudgetDto budgetDto, @RequestParam("budgetId") Integer budgetId) 
+			throws EventException {
+		service.update(budgetDto.toObject(), budgetId);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/last")
 	public @ResponseBody BudgetDto getLast() {
 		return BudgetDto.fromObject(service.getLast());
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteBudget(@RequestParam("budgetId") Integer budgetId) throws EventException{
+		service.deleteBudget(budgetId);
 	}
 	
 }

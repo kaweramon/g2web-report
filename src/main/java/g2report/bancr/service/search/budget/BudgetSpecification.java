@@ -25,7 +25,8 @@ public class BudgetSpecification implements Specification<Budget> {
 	public Predicate toPredicate(Root<Budget> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 		
 		if (criteria.getOperation().equalsIgnoreCase("=")) {
-			if (criteria.getKey().equalsIgnoreCase("budgetCounter") || criteria.getKey().equalsIgnoreCase("id")) {
+			if (criteria.getKey().equalsIgnoreCase("budgetCounter") || criteria.getKey().equalsIgnoreCase("id") ||
+					criteria.getKey().equalsIgnoreCase("status")) {
 				return builder.equal(root.get(criteria.getKey()), criteria.getValue());
 			}
 			if (criteria.getKey().equalsIgnoreCase("obs")) {

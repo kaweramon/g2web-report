@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import g2report.bancr.domain.Budget;
+import g2report.bancr.repository.BudgetProductsRepository;
 import g2report.bancr.repository.BudgetRepository;
 import g2report.bancr.service.search.budget.BudgetSpecificationBuilder;
 import g2report.generic.EventException;
@@ -20,6 +21,9 @@ public class BudgetServiceImpl implements BudgetService {
 
 	@Autowired
 	private BudgetRepository repository;
+	
+	@Autowired
+	private BudgetProductsRepository budgetProductsRepository;
 	
 	public Budget getById(Integer budgetId) throws EventException {
 
@@ -32,16 +36,22 @@ public class BudgetServiceImpl implements BudgetService {
 		return budget;
 	}
 
-	public List<Budget> search(String query) {
+	public List<Budget> search(String query) throws EventException {
 		Specification<Budget> spec = processSpecification(query);
-		return repository.findAll(spec);
+		List<Budget> listBudget = repository.findAll(spec);
+		if (listBudget == null || listBudget.size() == 0) {
+			throw new EventException("Nenhum resultado encontrado", HttpStatus.NOT_FOUND);
+		}
+		for (Budget budget: listBudget) {
+			budget.setListBudgetProducts(budgetProductsRepository.findAllByBudgetId(budget.getId()));
+		}
+		return listBudget;
 	}
 
-	public void create(Budget budget) {
-
+	public Budget create(Budget budget) {
 		budget.setSaleDate(new Date());
 		budget.setHour(new Date());
-		repository.save(budget);
+		return repository.save(budget);
 	}
 
 	private Specification<Budget> processSpecification(String search) {
@@ -64,6 +74,50 @@ public class BudgetServiceImpl implements BudgetService {
 
 	public Budget getLast() {
 		return repository.findFirstByOrderByIdDesc();
+	}
+
+	public void update(Budget budget, Integer budgetId) throws EventException {
+		Budget budgetDB = repository.findOne(budgetId);
+		
+		if (budgetDB == null) {
+			throw new EventException("Orçamento não encontrado", HttpStatus.NOT_FOUND);
+		}
+		
+		budgetDB.setSaleDate(new Date());
+		budgetDB.setClientId(budget.getClientId());
+		budgetDB.setClientName(budget.getClientName());
+		budgetDB.setTotal(budget.getTotal());
+		budgetDB.setSalesman(budget.getSalesman());
+		budgetDB.setHour(new Date());
+		budgetDB.setPercentDiscount(budget.getPercentDiscount());
+		budgetDB.setTotalWithDiscount(budget.getTotalWithDiscount());
+		budgetDB.setObs(budget.getObs());
+		budgetDB.setDelivered(budget.getDelivered());
+		budgetDB.setMessage(budget.getMessage());
+		budgetDB.setType(budget.getType());
+		budgetDB.setClientName(budget.getClientName());
+		budgetDB.setFreightValue(budget.getFreightValue());
+		budgetDB.setInsuranceValue(budget.getInsuranceValue());
+		budgetDB.setInfTreasury(budget.getInfTreasury());
+		budgetDB.setAdditionalInf(budget.getAdditionalInf());
+		budgetDB.setFreightModality(budget.getFreightModality());
+		budgetDB.setDiscountValue(budget.getDiscountValue());
+		budgetDB.setOperatorId(budget.getOperatorId());
+		budgetDB.setOperatorName(budget.getOperatorName());
+		budgetDB.setBudgetCounter(budget.getBudgetCounter());
+		budgetDB.setStatus(budget.getStatus());
+		budgetDB.setValidity(budget.getValidity());
+		budgetDB.setListBudgetProducts(budget.getListBudgetProducts());
+		
+		repository.save(budgetDB);
+	}
+
+	public void deleteBudget(Integer budgetId) throws EventException {
+		if (repository.findOne(budgetId) == null) {
+			throw new EventException("Orçamento não encontrado", HttpStatus.NOT_FOUND);
+		}
+		
+		repository.delete(budgetId);
 	}
 	
 }

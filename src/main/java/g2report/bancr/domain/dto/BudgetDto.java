@@ -36,10 +36,14 @@ public class BudgetDto {
 	private Integer budgetCounter;
 	private String status;
 	private Date validity;
+	private List<BudgetProductsDto> listBudgetProducts;
 	
 	public static BudgetDto fromObject(Budget budget) {
 		BudgetDto budgetDto = new BudgetDto();
 		BeanUtils.copyProperties(budget, budgetDto);
+		if (budget.getListBudgetProducts() != null) {
+			budgetDto.setListBudgetProducts(BudgetProductsDto.fromObject(budget.getListBudgetProducts()));
+		}
 		return budgetDto;
 	}
 	

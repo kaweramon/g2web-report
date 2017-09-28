@@ -8,4 +8,5 @@ public interface BudgetProductsService {
 
 	public void create(List<BudgetProducts> listBudgetProducts);
 	
+	public void deleteBudgetProducts(Integer budgetId);
 }

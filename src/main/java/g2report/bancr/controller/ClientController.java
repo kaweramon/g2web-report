@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import g2report.bancr.domain.dto.ClientDto;
 import g2report.bancr.service.ClientService;
+import g2report.generic.EventException;
 
 @Controller
 @RequestMapping(value = "/client")
@@ -25,7 +26,7 @@ public class ClientController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/search")
-	public @ResponseBody List<ClientDto> search(@RequestParam("search") String search) {
-		return ClientDto.fromObject(service.search(search));
+	public @ResponseBody List<ClientDto> search(@RequestParam("search") String search, @RequestParam("isLiberation") Boolean isLiberation) throws EventException {
+		return ClientDto.fromObject(service.search(search, isLiberation));
 	}
 }

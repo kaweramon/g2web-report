@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import g2report.bancr.domain.dto.BudgetProductsDto;
@@ -24,6 +25,12 @@ public class BudgetProductsController {
 	@ResponseStatus(HttpStatus.OK)
 	public void create(@RequestBody List<BudgetProductsDto> listBudgetProductsDto) {
 		service.create(BudgetProductsDto.toObject(listBudgetProductsDto));	
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteBudgetProducts(@RequestParam("budgetId") Integer budgetId) {
+		service.deleteBudgetProducts(budgetId);
 	}
 	
 }

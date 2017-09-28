@@ -17,5 +17,10 @@ public class BudgetProductsServiceImpl implements BudgetProductsService {
 	public void create(List<BudgetProducts> listBudgetProducts) {
 		repository.save(listBudgetProducts);
 	}
+
+	public void deleteBudgetProducts(Integer budgetId) {
+		List<BudgetProducts> listBudgetProducts = repository.findByBudgetId(budgetId);
+		repository.delete(listBudgetProducts);
+	}
 	
 }

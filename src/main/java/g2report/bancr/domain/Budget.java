@@ -1,6 +1,7 @@
 package g2report.bancr.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -96,4 +98,7 @@ public class Budget {
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(locale = "pt-BR", timezone = "America/Sao_Paulo", pattern = "yyyy-MM-dd")
 	private Date validity;
+	
+	@Transient
+	private List<BudgetProducts> listBudgetProducts;
 }

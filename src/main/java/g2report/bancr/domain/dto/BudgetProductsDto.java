@@ -30,6 +30,14 @@ public class BudgetProductsDto {
 		return budgetProductsDto;
 	}
 	
+	public static List<BudgetProductsDto> fromObject(List<BudgetProducts> listBudgetProducts) {
+		List<BudgetProductsDto> listBudgetProductsDto = new ArrayList<BudgetProductsDto>();
+		for (BudgetProducts budgetProducts : listBudgetProducts) {
+			listBudgetProductsDto.add(fromObject(budgetProducts));
+		}
+		return listBudgetProductsDto;
+	}
+	
 	public BudgetProducts toObject() {
 		BudgetProducts budgetProducts = new BudgetProducts();
 		BeanUtils.copyProperties(this, budgetProducts);
