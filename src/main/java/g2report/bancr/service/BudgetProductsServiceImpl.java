@@ -18,6 +18,11 @@ public class BudgetProductsServiceImpl implements BudgetProductsService {
 		repository.save(listBudgetProducts);
 	}
 
+	public void update(List<BudgetProducts> listBudgetProducts, Integer budgetId) {
+		this.deleteBudgetProducts(budgetId);
+		this.create(listBudgetProducts);
+	}
+	
 	public void deleteBudgetProducts(Integer budgetId) {
 		List<BudgetProducts> listBudgetProducts = repository.findByBudgetId(budgetId);
 		repository.delete(listBudgetProducts);

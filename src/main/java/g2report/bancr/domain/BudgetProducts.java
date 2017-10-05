@@ -38,6 +38,12 @@ public class BudgetProducts {
 	@Column(name = "Valor_Custo")
 	private Double costValue;
 	
+	@Column(name = "valor_Desconto")
+	private Double discountValue;
+	
+	@Column(name = "Valor_Acrescimo")
+	private Double increaseValue;
+	
 	@Column(name = "CFOP")
 	private Integer cfop;
 	
@@ -46,6 +52,9 @@ public class BudgetProducts {
 	
 	@Column(name = "NCM")
 	private String ncm;
+	
+	@Column(name = "Unidade_Prod")
+	private String unity;
 	
 	@Column(name = "Codigo_Produto")
 	private String barCodeProduct;

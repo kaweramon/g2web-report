@@ -19,9 +19,12 @@ public class BudgetProductsDto {
 	private Double priceValue;
 	private Double subTotal;
 	private Double costValue;
+	private Double discountValue;
+	private Double increaseValue;
 	private Integer cfop;
 	private String cst;
 	private String ncm;
+	private String unity;
 	private String barCodeProduct;
 	
 	public static BudgetProductsDto fromObject(BudgetProducts budgetProducts) {

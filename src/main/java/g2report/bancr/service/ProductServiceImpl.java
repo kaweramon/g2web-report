@@ -6,11 +6,13 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import g2report.bancr.domain.product.Product;
 import g2report.bancr.repository.ProductRepository;
 import g2report.bancr.service.search.product.ProductSpecificationBuilder;
+import g2report.generic.EventException;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -22,9 +24,13 @@ public class ProductServiceImpl implements ProductService {
 		return (List<Product>) repository.findAll();
 	}
 
-	public List<Product> search(String query) {
+	public List<Product> search(String query) throws EventException {
 		Specification<Product> specs = processSpecification(query);
-		return repository.findAll(specs);
+		List<Product> products = repository.findAll(specs);
+		if (products == null || products.size() == 0) {
+			throw new EventException("Nenhum produto encontrado", HttpStatus.NOT_FOUND);
+		}
+		return products;
 	}
 
 	private Specification<Product> processSpecification(String search) {

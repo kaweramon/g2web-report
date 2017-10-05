@@ -51,6 +51,9 @@ public class BudgetServiceImpl implements BudgetService {
 	public Budget create(Budget budget) {
 		budget.setSaleDate(new Date());
 		budget.setHour(new Date());
+		if (budget.getIncreasePercent() == null) {
+			budget.setIncreasePercent(0.0);
+		}
 		return repository.save(budget);
 	}
 
@@ -89,7 +92,6 @@ public class BudgetServiceImpl implements BudgetService {
 		budgetDB.setTotal(budget.getTotal());
 		budgetDB.setSalesman(budget.getSalesman());
 		budgetDB.setHour(new Date());
-		budgetDB.setPercentDiscount(budget.getPercentDiscount());
 		budgetDB.setTotalWithDiscount(budget.getTotalWithDiscount());
 		budgetDB.setObs(budget.getObs());
 		budgetDB.setDelivered(budget.getDelivered());
@@ -101,7 +103,10 @@ public class BudgetServiceImpl implements BudgetService {
 		budgetDB.setInfTreasury(budget.getInfTreasury());
 		budgetDB.setAdditionalInf(budget.getAdditionalInf());
 		budgetDB.setFreightModality(budget.getFreightModality());
+		budgetDB.setIncreaseValue(budget.getIncreaseValue());
 		budgetDB.setDiscountValue(budget.getDiscountValue());
+		budgetDB.setDiscountPercent(budget.getDiscountPercent());
+		budgetDB.setIncreasePercent(budget.getIncreasePercent());
 		budgetDB.setOperatorId(budget.getOperatorId());
 		budgetDB.setOperatorName(budget.getOperatorName());
 		budgetDB.setBudgetCounter(budget.getBudgetCounter());

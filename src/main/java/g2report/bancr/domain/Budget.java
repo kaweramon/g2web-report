@@ -43,9 +43,6 @@ public class Budget {
 	@Temporal(TemporalType.TIME)
 	private Date hour;
 	
-	@Column(name = "Percent_desconto")
-	private Double percentDiscount;
-	
 	@Column(name = "Total_com_desconto")
 	private Double totalWithDiscount;
 	
@@ -81,6 +78,15 @@ public class Budget {
 	
 	@Column(name = "Valor_Desconto")
 	private Double discountValue;
+	
+	@Column(name = "Valor_Acrescimo")
+	private Double increaseValue;
+	
+	@Column(name = "Percent_Desconto")
+	private Double discountPercent;
+	
+	@Column(name = "Percent_Acrescimo")
+	private Double increasePercent;
 	
 	@Column(name = "CodigoOperador")
 	private Integer operatorId;

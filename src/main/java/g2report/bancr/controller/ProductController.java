@@ -17,6 +17,7 @@ import g2report.bancr.domain.dto.product.ProductGroupDto;
 import g2report.bancr.domain.dto.product.ProductOthersDto;
 import g2report.bancr.domain.product.Product;
 import g2report.bancr.service.ProductService;
+import g2report.generic.EventException;
 
 @Controller
 @RequestMapping(path = "/product")
@@ -54,7 +55,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/search")
-	public @ResponseBody List<ProductDto> search(@RequestParam("query") String query) {
+	public @ResponseBody List<ProductDto> search(@RequestParam("query") String query) throws EventException {
 		return ProductDto.fromObject(service.search(query));
 	}
 }

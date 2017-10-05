@@ -27,6 +27,12 @@ public class BudgetProductsController {
 		service.create(BudgetProductsDto.toObject(listBudgetProductsDto));	
 	}
 
+	@RequestMapping(method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	public void update(@RequestBody List<BudgetProductsDto> listBudgetProductsDto, @RequestParam("budgetId") Integer budgetId) {
+		service.update(BudgetProductsDto.toObject(listBudgetProductsDto), budgetId);
+	}
+	
 	@RequestMapping(method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteBudgetProducts(@RequestParam("budgetId") Integer budgetId) {

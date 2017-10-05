@@ -18,7 +18,6 @@ public class BudgetDto {
 	private Double total;
 	private String salesman;
 	private Date hour;
-	private Double percentDiscount;
 	private Double totalWithDiscount;
 	private String obs;
 	private String delivered;
@@ -31,6 +30,9 @@ public class BudgetDto {
 	private String additionalInf;
 	private String freightModality;
 	private Double discountValue;
+	private Double increaseValue;
+	private Double discountPercent;
+	private Double increasePercent;
 	private Integer operatorId;
 	private String operatorName;
 	private Integer budgetCounter;
