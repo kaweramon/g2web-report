@@ -40,6 +40,7 @@ public class Budget {
 	private String salesman;
 	
 	@Column(name = "Horario")
+	@JsonFormat(locale = "pt-BR", timezone = "America/Sao_Paulo", pattern = "HH:mm:ss")
 	@Temporal(TemporalType.TIME)
 	private Date hour;
 	

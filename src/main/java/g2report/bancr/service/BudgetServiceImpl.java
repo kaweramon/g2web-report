@@ -82,9 +82,7 @@ public class BudgetServiceImpl implements BudgetService {
 	public void update(Budget budget, Integer budgetId) throws EventException {
 		Budget budgetDB = repository.findOne(budgetId);
 		
-		if (budgetDB == null) {
-			throw new EventException("Orçamento não encontrado", HttpStatus.NOT_FOUND);
-		}
+		handleBudgetErrors(budget, budgetDB);
 		
 		budgetDB.setSaleDate(new Date());
 		budgetDB.setClientId(budget.getClientId());
@@ -123,6 +121,25 @@ public class BudgetServiceImpl implements BudgetService {
 		}
 		
 		repository.delete(budgetId);
+	}
+	
+	private void handleBudgetErrors(Budget budget, Budget budgetDB) throws EventException {
+		
+		if (budgetDB == null) {
+			throw new EventException("Orçamento não encontrado", HttpStatus.NOT_FOUND);
+		}
+		
+		if (budget.getClientId() == null || budget.getClientId() == 0) {
+			throw new EventException("Cliente não encontrado", HttpStatus.BAD_REQUEST);
+		}
+		
+		if (budget.getListBudgetProducts() == null || budget.getListBudgetProducts().size() == 0) {
+			throw new EventException("Nenhum produto adicionado", HttpStatus.BAD_REQUEST);
+		}
+		
+		if (budget.getSalesman() == null || budget.getSalesman().length() == 0) {
+			throw new EventException("Vendedor não encontrado", HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 }
