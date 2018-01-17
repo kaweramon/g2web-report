@@ -10,4 +10,7 @@ public interface ProductService {
 	public List<Product> list();
 	
 	public List<Product> search(String query) throws EventException;
+	
+	public Product findByBarCode(String barCode) throws EventException;
+	
 }

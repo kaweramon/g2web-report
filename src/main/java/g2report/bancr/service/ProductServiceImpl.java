@@ -49,5 +49,15 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return builder.build();
 	}
+
+	public Product findByBarCode(String barCode) throws EventException {
+		Product product = repository.findByBarCode(barCode);
+		
+		if (product == null) {
+			throw new EventException("Nenhum produto encontrado", HttpStatus.NOT_FOUND);
+		}
+		
+		return product;
+	}
 	
 }

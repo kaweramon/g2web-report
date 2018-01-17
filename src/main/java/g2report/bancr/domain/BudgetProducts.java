@@ -41,8 +41,14 @@ public class BudgetProducts {
 	@Column(name = "valor_Desconto")
 	private Double discountValue;
 	
+	@Column(name = "Percent_Desconto")
+	private Double discountPercent;
+	
 	@Column(name = "Valor_Acrescimo")
 	private Double increaseValue;
+	
+	@Column(name = "Percent_Acrescimo")
+	private Double increasePercent;
 	
 	@Column(name = "CFOP")
 	private Integer cfop;

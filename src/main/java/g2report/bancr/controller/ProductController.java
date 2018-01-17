@@ -58,4 +58,10 @@ public class ProductController {
 	public @ResponseBody List<ProductDto> search(@RequestParam("query") String query) throws EventException {
 		return ProductDto.fromObject(service.search(query));
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/barCode")
+	public @ResponseBody ProductDto findByBarCode(@RequestParam("barCode") String barCode) throws EventException {
+		return ProductDto.fromObject(service.findByBarCode(barCode));
+	}
+	
 }

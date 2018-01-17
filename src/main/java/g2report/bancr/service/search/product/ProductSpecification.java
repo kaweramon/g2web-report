@@ -21,7 +21,8 @@ public class ProductSpecification implements Specification<Product> {
 	public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 		
 		if (criteria.getOperation().equalsIgnoreCase("=")) {
-			if (criteria.getKey().equalsIgnoreCase("id") || criteria.getKey().equalsIgnoreCase("barCode")) {
+			if (criteria.getKey().equalsIgnoreCase("id") || criteria.getKey().equalsIgnoreCase("barCode") || 
+					criteria.getKey().equalsIgnoreCase("priceValue")) {
 				return builder.equal(root.get(criteria.getKey()), criteria.getValue());
 			}
 			if (criteria.getKey().equalsIgnoreCase("name") || criteria.getKey().equalsIgnoreCase("reference")) {

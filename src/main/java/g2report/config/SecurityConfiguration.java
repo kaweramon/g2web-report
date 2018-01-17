@@ -20,4 +20,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					
 	}
 
+	
 }

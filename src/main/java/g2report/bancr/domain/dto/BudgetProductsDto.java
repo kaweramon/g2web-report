@@ -20,7 +20,9 @@ public class BudgetProductsDto {
 	private Double subTotal;
 	private Double costValue;
 	private Double discountValue;
+	private Double discountPercent;
 	private Double increaseValue;
+	private Double increasePercent;
 	private Integer cfop;
 	private String cst;
 	private String ncm;
