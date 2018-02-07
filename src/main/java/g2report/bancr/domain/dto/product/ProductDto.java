@@ -19,6 +19,7 @@ public class ProductDto {
 	private Double costPrice;
 	private Double priceValue;
 	private String unity;
+	private Double stock;
 	private ProductGroupDto productGroup;
 	private ProductFamilyDto productFamily;
 	private ProductOthersDto productOther;

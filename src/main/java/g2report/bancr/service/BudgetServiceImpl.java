@@ -11,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import g2report.bancr.domain.Budget;
+import g2report.bancr.domain.Codes;
 import g2report.bancr.repository.BudgetProductsRepository;
 import g2report.bancr.repository.BudgetRepository;
+import g2report.bancr.repository.CodesRepository;
 import g2report.bancr.service.search.budget.BudgetSpecificationBuilder;
 import g2report.generic.EventException;
 
@@ -24,6 +26,9 @@ public class BudgetServiceImpl implements BudgetService {
 	
 	@Autowired
 	private BudgetProductsRepository budgetProductsRepository;
+	
+	@Autowired
+	private CodesRepository codesRepository;
 	
 	public Budget getById(Integer budgetId) throws EventException {
 
@@ -51,9 +56,15 @@ public class BudgetServiceImpl implements BudgetService {
 	public Budget create(Budget budget) {
 		budget.setSaleDate(new Date());
 		budget.setHour(new Date());
+		budget.setId(repository.findLastId());
+		Integer budgetLastNumOrc = repository.findLastNumOrc();
+		budget.setBudgetCounter(budgetLastNumOrc);
 		if (budget.getIncreasePercent() == null) {
 			budget.setIncreasePercent(0.0);
 		}
+		Codes codes = codesRepository.findByKey("COD_ORCAMENTO");
+		codes.setValue(budgetLastNumOrc);
+		codesRepository.save(codes);
 		return repository.save(budget);
 	}
 
