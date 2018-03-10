@@ -41,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
 		List<Client> clients = new ArrayList<Client>();
 		if (isLiberation) {
 			for (Client tempClient: tempClients) {
-				Liberation liberation = liberationRepository.findOneByClientId(tempClient.getId());
+				Liberation liberation = liberationRepository.findByClientId(tempClient.getId());
 				if (liberation != null) {
 					tempClient.setLiberation(liberation);
 					clients.add(tempClient);

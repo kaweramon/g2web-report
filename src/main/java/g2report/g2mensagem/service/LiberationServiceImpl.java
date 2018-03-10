@@ -9,15 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import g2report.bancr.domain.Client;
+import g2report.bancr.repository.ClientRepository;
 import g2report.g2mensagem.domain.Liberation;
 import g2report.g2mensagem.repository.LiberationRepository;
 import g2report.g2mensagem.service.search.LiberationSpecificationBuilder;
+import g2report.generic.BadRequestException;
 
 @Service
 public class LiberationServiceImpl implements LiberationService {
 
 	@Autowired
 	private LiberationRepository repository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	public List<Liberation> listReport() {
 		List<Liberation> listLiberation = (List<Liberation>) repository.findAll();
@@ -68,6 +74,17 @@ public class LiberationServiceImpl implements LiberationService {
 			}
 		}
 		return liberationsStr;
+	}
+
+	public Liberation findByClientCnpj(String cnpj) throws BadRequestException{
+		Client client = clientRepository.findByCnpj(cnpj);
+		Liberation liberation = null;
+		
+		if (client != null)
+			liberation = repository.findByClientId(client.getId());
+		else 
+			throw new BadRequestException("Nenhum Cliente encontrado");
+		return liberation;
 	}
 	
 }

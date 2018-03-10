@@ -9,4 +9,6 @@ import g2report.bancr.domain.Client;
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Integer>, JpaSpecificationExecutor<Client> {
 
+	public Client findByCnpj(String cnpj);
+	
 }

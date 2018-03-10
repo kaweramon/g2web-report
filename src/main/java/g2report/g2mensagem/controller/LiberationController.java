@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import g2report.g2mensagem.domain.dto.LiberationDto;
 import g2report.g2mensagem.service.LiberationService;
+import g2report.generic.BadRequestException;
 
 @Controller
 @RequestMapping(path = "/liberation")
@@ -39,4 +40,10 @@ public class LiberationController {
 	public @ResponseBody List<String> getVersions() {
 		return service.getVersions();
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/by-cnpj")
+	public @ResponseBody LiberationDto findByClientCnpj(@RequestParam("cnpj") String cnpj) throws BadRequestException {
+		return LiberationDto.fromObject(service.findByClientCnpj(cnpj));
+	}
+	
 }
